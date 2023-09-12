@@ -34,9 +34,13 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.methods.createToken = function () {
-  return jwt.sign({ userId: this._id, name: this.name }, "jwtSecret", {
-    expiresIn: "1d",
-  });
+  return jwt.sign(
+    { userId: this._id, name: this.name },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_LIFETIME,
+    }
+  );
 };
 
 module.exports = mongoose.model("User", UserSchema);
