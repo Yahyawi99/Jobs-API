@@ -26,6 +26,12 @@ const login = async (req, res) => {
     );
   }
 
+  const isMatch = await user.comparePassword(password);
+
+  if (!isMatch) {
+    throw new CustomErrors.UnauthenticatedError(`Invalid Credentials!`);
+  }
+
   const token = user.createToken();
 
   res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
