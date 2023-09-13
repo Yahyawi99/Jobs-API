@@ -4,6 +4,11 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
+// Swagger UI
+const swagger = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDoc = require("./swagger.yaml");
+
 // DB
 const connect = require("./db/connect");
 
@@ -35,6 +40,15 @@ app.use(
     max: 100,
   })
 );
+
+app.get("/", (req, res) => {
+  app.send(`
+  <h1>JOBS API</h1>
+  <a href="/api-docs">Documentation</a>
+  `);
+});
+
+app.use("/api-docs", swagger.serve, swagger.setup(swaggerDoc));
 
 // routes
 app.use("/api/v1/auth", AuthRouter);
