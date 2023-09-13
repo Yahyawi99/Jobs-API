@@ -41,14 +41,14 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send(`
-  <h1>JOBS API</h1>
-  <a href="/api-docs">Documentation</a>
-  `);
-});
+// app.get("/", (req, res) => {
+//   res.send(`
+//   <h1>JOBS API</h1>
+//   <a href="/api-docs">Documentation</a>
+//   `);
+// });
 
-app.use("/api-docs", swagger.serve, swagger.setup(swaggerDoc));
+app.use("/", swagger.serve, swagger.setup(swaggerDoc));
 
 // routes
 app.use("/api/v1/auth", AuthRouter);
