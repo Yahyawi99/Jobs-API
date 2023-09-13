@@ -42,7 +42,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  app.send(`
+  res.send(`
   <h1>JOBS API</h1>
   <a href="/api-docs">Documentation</a>
   `);
