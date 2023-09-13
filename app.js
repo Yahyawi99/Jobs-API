@@ -7,7 +7,7 @@ const app = express();
 // Swagger UI
 const swagger = require("swagger-ui-express");
 const YAML = require("yamljs");
-const swaggerDoc = require("./swagger.yaml");
+const swaggerDoc = YAML.load("./swagger.yaml");
 
 // DB
 const connect = require("./db/connect");
